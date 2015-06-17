@@ -5,25 +5,25 @@
 #   None
 #
 # Commands:
-#   hubot Y U NO <text> - Meme: Generates the Y U NO GUY with the bottom caption of <text>
-#   hubot I don't always <something> but when i do <text> - Meme: Generates The Most Interesting man in the World
-#   hubot <text> (SUCCESS|NAILED IT) - Meme: Generates success kid with the top caption of <text>
-#   hubot <text> ALL the <things> - Meme: Generates ALL THE THINGS
-#   hubot <text> TOO DAMN <high> - Meme: Generates THE RENT IS TOO DAMN HIGH guy
-#   hubot Yo dawg <text> so <text> - Meme: Generates Yo Dawg
+#   hubot Y U NO <text> - Meme: Y U NO GUY w/ bottom caption
+#   hubot I don't always <something> but when i do <text> - Meme: The Most Interesting man in the World
+#   hubot <text> (SUCCESS|NAILED IT) - Meme: Success kid w/ top caption
+#   hubot <text> ALL the <things> - Meme: ALL THE THINGS
+#   hubot <text> TOO DAMN <high> - Meme: THE RENT IS TOO DAMN HIGH guy
+#   hubot Yo dawg <text> so <text> - Meme: Yo Dawg
 #   hubot All your <text> are belong to <text> - Meme: All your <text> are belong to <text>
-#   hubot If <text>, <word that can start a question> <text>? - Meme: Generates Philosoraptor
-#   hubot <text>, BITCH PLEASE <text> - Meme: Generates Yao Ming
-#   hubot <text>, COURAGE <text> - Meme: Generates Courage Wolf
-#   hubot ONE DOES NOT SIMPLY <text> - Meme: Generates Boromir
+#   hubot If <text>, <question> <text>? - Meme: Philosoraptor
+#   hubot <text>, BITCH PLEASE <text> - Meme: Yao Ming
+#   hubot <text>, COURAGE <text> - Meme: Courage Wolf
+#   hubot ONE DOES NOT SIMPLY <text> - Meme: Boromir
 #   hubot IF YOU <text> GONNA HAVE A BAD TIME - Meme: Ski Instructor
 #   hubot IF YOU <text> TROLLFACE <text> - Meme: Troll Face
-#   hubot Aliens guy <text> - Meme: Aliens guy weighs in on something
+#   hubot Aliens guy <text> - Meme: Aliens guy
 #   hubot Brace yourself <text> - Meme: Ned Stark braces for <text>
 #   hubot Iron Price <text> - Meme: To get <text>? Pay the iron price!
-#   hubot Not sure if <something> or <something else> - Meme: Generates a Futurama Fry meme
+#   hubot Not sure if <something> or <something else> - Meme: Futurama Fry
 #   hubot <text>, AND IT'S GONE - Meme: Bank Teller
-#   hubot WHAT IF I TOLD YOU <text> - Meme: Morpheus What if I told you
+#   hubot WHAT IF I TOLD YOU <text> - Meme: Morpheus "What if I told you"
 #
 # Author:
 #   bobanj
@@ -108,23 +108,24 @@ module.exports = (robot) ->
 
 memeGenerator = (msg, imageName, text1, text2, callback) ->
   imageUrl = imageName
-
+  baseError = 'Sorry, I couldn\'t generate that meme.'
+  reasonError = 'Unexpected status from memecaptian.com:'
   processResult = (err, res, body) ->
     return msg.send err if err
     if res.statusCode == 301
       msg.http(res.headers.location).get() processResult
       return
     if res.statusCode > 300
-      msg.reply "Sorry, I couldn't generate that meme. Unexpected status from memecaption.com: #{res.statusCode}"
+      msg.reply "#{baseError} #{reasonError} #{res.statusCode}"
       return
     try
       result = JSON.parse(body)
     catch error
-      msg.reply "Sorry, I couldn't generate that meme. Unexpected response from memecaptain.com: #{body}"
+      msg.reply "#{baseError} #{reasonError} #{body}"
     if result? and result['imageUrl']?
       callback result['imageUrl']
     else
-      msg.reply "Sorry, I couldn't generate that meme."
+      msg.reply "#{baseError}"
 
   msg.http("http://memecaptain.com/g")
   .query(
