@@ -1,5 +1,7 @@
 # Description:
 #   Get a meme from http://memecaptain.com/
+#   API Docs at:
+#   github.com/mmb/meme_captain_web/blob/master/doc/api/create_meme_image.md
 #
 # Dependencies:
 #   None
@@ -63,8 +65,7 @@ module.exports = (robot) ->
       msg.send url
 
   robot.respond /(NOT SURE IF .*) (OR .*)/i, (msg) ->
-    memeGenerator msg, 'http://memecaptain.com/fry.png', msg.match[1], msg.match[2], (url) ->
-      msg.send url
+    memeGenerator msg, 'CsNF8w', msg.match[1], msg.match[2]
 
   robot.respond /(YO DAWG .*) (SO .*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/xzibit.jpg', msg.match[1], msg.match[2], (url) ->
@@ -106,10 +107,12 @@ module.exports = (robot) ->
     memeGenerator msg, 'http://memecaptain.com/src_images/fWle1w.png', 'WHAT IF I TOLD YOU', msg.match[1], (url) ->
       msg.send url
 
-memeGenerator = (msg, imageName, text1, text2, callback) ->
-  imageUrl = imageName
+memeGenerator = (msg, imageName, upperText, lowerText) ->
+  MEME_CAPTAIN = 'http://memecaptain.com/gend_images'
+  resultImg = 'http://i.memecaptain.com/gend_images/'
   baseError = 'Sorry, I couldn\'t generate that meme.'
   reasonError = 'Unexpected status from memecaptian.com:'
+
   processResult = (err, res, body) ->
     return msg.send err if err
     if res.statusCode == 301
@@ -119,17 +122,37 @@ memeGenerator = (msg, imageName, text1, text2, callback) ->
       msg.reply "#{baseError} #{reasonError} #{res.statusCode}"
       return
     try
-      result = JSON.parse(body)
+      result = res.headers.location
     catch error
       msg.reply "#{baseError} #{reasonError} #{body}"
-    if result? and result['imageUrl']?
-      callback result['imageUrl']
+    if result?
+      id = result.split('/')
+      id = id[id.length - 1]
+      msg.send "#{resultImg}#{id}.png"
     else
       msg.reply "#{baseError}"
 
-  msg.http("http://memecaptain.com/g")
-  .query(
-    u: imageUrl,
-    t1: text1,
-    t2: text2
-  ).get() processResult
+
+  data = {
+    src_image_id: imageName,
+    captions_attributes: [
+      {
+        text: upperText.trim(),
+        top_left_x_pct: 0.05,
+        top_left_y_pct: 0,
+        width_pct: 0.9,
+        height_pct: 0.25
+      },
+      {
+        text: lowerText.trim(),
+        top_left_x_pct: 0.05,
+        top_left_y_pct: 0.75,
+        width_pct: 0.9,
+        height_pct: 0.25
+      }]
+  }
+  
+  msg.robot.http(MEME_CAPTAIN)
+      .header('accept', 'application/json')
+      .header('Content-type', 'application/json')
+      .post(JSON.stringify(data)) processResult
