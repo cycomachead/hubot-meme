@@ -35,9 +35,6 @@ module.exports = (robot) ->
   robot.respond /Y U NO (.+)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/y_u_no.jpg', 'Y U NO', msg.match[1]
 
-  robot.respond /iron price (.+)/i, (msg) ->
-    memeGenerator msg, 'http://imgur.com/nqVZQel.jpg', msg.match[1], 'Pay the iron price'
-
   robot.respond /aliens guy (.+)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/aliens.jpg', msg.match[1], ''
 
