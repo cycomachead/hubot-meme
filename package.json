@@ -9,11 +9,11 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/hubot-hubot-memecaptian.git"
+    "url": "git://github.com/cycomachead/hubot-memecaptian.git"
   },
 
   "bugs": {
-    "url": "https://github.com/hubot-scripts/hubot-hubot-memecaptian/issues"
+    "url": "https://github.com/cycomachead/hubot-hubot-memecaptian/issues"
   },
 
   "dependencies": {
