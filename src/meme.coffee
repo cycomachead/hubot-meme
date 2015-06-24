@@ -88,7 +88,7 @@ memeGenerator = (msg, id, upperText, lowerText) ->
     if result?
       id = result.split('/')
       id = id[id.length - 1]
-      msg.send "#{resultImg}#{id}.png"
+      msg.send "#{resultImg}#{id}.jpg"
     else
       msg.reply "#{baseError}"
 
