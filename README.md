@@ -1,6 +1,6 @@
 # hubot-meme
 
-Zero-configuration memes for your hubot via memecaptian.com
+Zero-configuration memes for your hubot via memecaptain.com
 
 See [`src/meme.coffee`](src/meme.coffee) for full documentation.
 

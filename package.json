@@ -1,11 +1,11 @@
 {
   "name": "hubot-meme",
-  "description": "Zero-configuration memes for your hubot via memecaptian.com",
-  "version": "1.0.1",
+  "description": "Zero-configuration memes for your hubot via memecaptain.com",
+  "version": "1.0.2",
   "author": "Michael Ball <cycomachead@gmail.com>",
   "license": "MIT",
 
-  "keywords": "hubot, hubot-scripts, meme, meme-captian",
+  "keywords": "hubot, hubot-scripts, meme, memes, memecaptain",
 
   "repository": {
     "type": "git",
