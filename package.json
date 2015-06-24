@@ -1,7 +1,7 @@
 {
-  "name": "hubot-hubot-memecaptian",
-  "description": "A simple hubot script for memecaptian.com",
-  "version": "0.0.0",
+  "name": "hubot-meme",
+  "description": "Zero-configuration memes for your hubot via memecaptian.com",
+  "version": "1.0.1",
   "author": "Michael Ball <cycomachead@gmail.com>",
   "license": "MIT",
 
@@ -9,11 +9,11 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/cycomachead/hubot-memecaptian.git"
+    "url": "git://github.com/cycomachead/hubot-meme.git"
   },
 
   "bugs": {
-    "url": "https://github.com/cycomachead/hubot-hubot-memecaptian/issues"
+    "url": "https://github.com/cycomachead/hubot-meme/issues"
   },
 
   "dependencies": {
