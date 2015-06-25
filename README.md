@@ -45,6 +45,10 @@ hubot Brace yourself <text> - Meme: Ned Stark braces for <text>
 hubot Not sure if <something> or <something else> - Meme: Futurama Fry
 hubot <text>, AND IT'S GONE - Meme: Bank Teller
 hubot WHAT IF I TOLD YOU <text> - Meme: Morpheus "What if I told you"
+hubot WTF <text> - Picard WTF
+hubot IF <text> THAT'D BE GREAT - Generates Lumberg
+hubot MUCH <text> (SO|VERY) <text> - Generates Doge
+hubot <text> EVERYWHERE - Generates Buzz Lightyear
 ```
 
 Feel free to submit a pull-request if you want a meme added!

@@ -10,6 +10,8 @@
 # Author:
 #   bobanj
 #   cycomachead, Michael Ball <cycomachead@gmail.com>
+#   peelman, Nick Peelman <nick@peelman.us>
+#   ericjsilva, Eric Silva
 
 module.exports = (robot) ->
   robot.respond /Y U NO (.+)/i, (msg) ->
@@ -66,6 +68,20 @@ module.exports = (robot) ->
   robot.respond /WHAT IF I TOLD YOU (.*)/i, (msg) ->
     memeGenerator msg, 'fWle1w', 'WHAT IF I TOLD YOU', msg.match[1]
 
+  robot.respond /(WHY THE (FUCK|FRIEND)) (.*)/i, (msg) ->
+    memeGenerator msg, 'z8IPtw', msg.match[1], msg.match[3]
+
+  robot.respond /WTF (.*)/i, (msg) ->
+    memeGenerator msg, 'z8IPtw', 'WTF', msg.match[1]
+
+  robot.respond /(IF .*)(THAT'D BE GREAT)/i, (msg) ->
+    memeGenerator msg, 'q1cQXg', msg.match[1], msg.match[2]
+
+  robot.respond /(MUCH .*) ((SO|VERY) .*)/i, (msg) ->
+    memeGenerator msg, 'AfO6hw', msg.match[1], msg.match[2]
+
+  robot.respond /(.*)(EVERYWHERE.*)/i, (msg) ->
+    memeGenerator msg, 'yDcY5w', msg.match[1], msg.match[2]
 
 memeGenerator = (msg, id, upperText, lowerText) ->
   MEME_CAPTAIN = 'http://memecaptain.com/gend_images'
@@ -111,7 +127,7 @@ memeGenerator = (msg, id, upperText, lowerText) ->
         height_pct: 0.25
       }]
   }
-  
+
   msg.robot.http(MEME_CAPTAIN)
       .header('accept', 'application/json')
       .header('Content-type', 'application/json')
