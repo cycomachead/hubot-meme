@@ -6,7 +6,6 @@
 # Dependencies:
 #   None
 #
-#
 # Commands:
 #   hubot Y U NO <text> - Meme: Y U NO GUY w/ bottom caption
 #   hubot I don't always <something> but when i do <text> - Meme: The Most Interesting man in the World
@@ -23,6 +22,7 @@
 #   hubot IF YOU <text> TROLLFACE <text> - Meme: Troll Face
 #   hubot Aliens guy <text> - Meme: Aliens guy
 #   hubot Brace yourself <text> - Meme: Ned Stark braces for <text>
+#   hubot Iron Price <text> - Meme: To get <text>? Pay the iron price!
 #   hubot Not sure if <something> or <something else> - Meme: Futurama Fry
 #   hubot <text>, AND IT'S GONE - Meme: Bank Teller
 #   hubot WHAT IF I TOLD YOU <text> - Meme: Morpheus "What if I told you"
@@ -42,6 +42,9 @@ module.exports = (robot) ->
 
   robot.respond /aliens guy (.+)/i, (msg) ->
     memeGenerator msg, 'sO-Hng', msg.match[1], ''
+
+  robot.respond /iron price (.+)/i, (msg) ->
+    memeGenerator msg, 'q06KuA', msg.match[1], 'Pay the iron price',
 
   robot.respond /brace yourself (.+)/i, (msg) ->
     memeGenerator msg, '_I74XA', 'Brace Yourself', msg.match[1]
