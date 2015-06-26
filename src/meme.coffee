@@ -110,24 +110,24 @@ module.exports = (robot) ->
     memeGenerator msg, 'yDcY5w', msg.match[1], msg.match[2]
 
 ####
-createPostData = (imageID, upperText, lowerText) ->
+createPostData = (imageID, lowerText, upperText) ->
   data = {
     src_image_id: imageID,
     private: true,
     captions_attributes: [
       {
-        text: upperText.trim(),
+        text: lowerText.trim(),
         top_left_x_pct: 0.05,
         top_left_y_pct: 0.75,
         width_pct: 0.9,
         height_pct: 0.25
       },
       {
-        text: lowerText.trim(),
+        text: upperText.trim(),
         top_left_x_pct: 0.05,
-         top_left_y_pct: 0,
-         width_pct: 0.9,
-         height_pct: 0.25
+        top_left_y_pct: 0,
+        width_pct: 0.9,
+        height_pct: 0.25
       }
     ]
   }
@@ -136,7 +136,6 @@ createPostData = (imageID, upperText, lowerText) ->
 
 memeGenerator = (msg, imageID, upperText, lowerText) ->
   MEME_CAPTAIN = 'http://memecaptain.com/gend_images'
-  resultImg = 'http://i.memecaptain.com/gend_images/'
   baseError = 'Sorry, I couldn\'t generate that meme.'
   reasonError = 'Unexpected status from memecaptian.com:'
 
@@ -159,7 +158,7 @@ memeGenerator = (msg, imageID, upperText, lowerText) ->
       msg.reply "#{baseError} #{reasonError} #{res.statusCode}"
 
 
-  data = createPostData(imageID, upperText, lowerText)
+  data = createPostData(imageID, lowerText, upperText)
   msg.robot.http(MEME_CAPTAIN)
       .header('accept', 'application/json')
       .header('Content-type', 'application/json')
