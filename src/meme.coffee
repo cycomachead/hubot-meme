@@ -148,14 +148,15 @@ memeGenerator = (msg, imageID, upperText, lowerText) ->
       timer = setInterval(->
         msg.http(res.headers.location).get() (err, res, body) ->
           return msg.reply "#{baseError} #{err}" if err
+          return if res.statusCode == 200 # wait for the image
           if res.statusCode == 303
             msg.send res.headers.location
             clearInterval(timer)
           else
-            msg.reply "#{baseError} #{reasonError} #{res.statusCode}"
+            msg.reply "#{baseError} #{reasonError} #{res.statusCode} while waiting for the image"
       , 2000)
-    if res.statusCode > 300
-      msg.reply "#{baseError} #{reasonError} #{res.statusCode}"
+    if res.statusCode > 300 # memecaptian error
+      msg.reply "#{baseError} #{reasonError} #{res.statusCode} when requesting the image"
 
 
   data = createPostData(imageID, lowerText, upperText)
