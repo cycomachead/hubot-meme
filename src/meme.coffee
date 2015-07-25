@@ -29,7 +29,8 @@
 #   hubot WTF <text> - Meme: Picard WTF
 #   hubot IF <text> THAT'D BE GREAT - Meme: Generates Lumberg
 #   hubot MUCH <text> (SO|VERY) <text> - Meme: Generates Doge
-#   hubot <text> EVERYWHERE - Meme: Generates Buzz Lightyear
+#   hubot <text>, <text> EVERYWHERE - Meme: Generates Buzz Lightyear
+#   hubot khanify <text> - Meme: Has Shatner yell your phrase
 # Author:
 #   bobanj
 #   cycomachead, Michael Ball <cycomachead@gmail.com>
@@ -108,6 +109,26 @@ module.exports = (robot) ->
 
   robot.respond /(.+, .+)(EVERYWHERE.*)/i, (msg) ->
     memeGenerator msg, 'yDcY5w', msg.match[1], msg.match[2]
+
+  robot.respond /KHANIFY (.+)$/i, (msg) ->
+    # Characters we can duplicate to make it KHAAAAAANy
+    extendyChars = ['a', 'e', 'o', 'u']
+    khan = ''
+
+    # Only duplicate the first vowel (except i) we find
+    extended = false
+
+    for c in msg.match[1]
+      if c in extendyChars and not extended
+        khan += c for _ in [1..6]
+        extended = true
+      else
+        khan += c
+
+    # If there were no vowels, we need more 'oomph!'
+    khan += if extended then '!' else '!!!!!'
+
+    memeGenerator msg, 'DoLEMA', '', khan
 
 ####
 createPostData = (imageID, lowerText, upperText) ->
