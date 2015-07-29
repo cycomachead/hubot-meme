@@ -41,7 +41,7 @@ module.exports = (robot) ->
     memeGenerator msg, 'NryNmg', 'Y U NO', msg.match[1]
 
   robot.respond /aliens guy (.+)/i, (msg) ->
-    memeGenerator msg, 'sO-Hng', msg.match[1], ''
+    memeGenerator msg, 'sO-Hng', '', msg.match[1]
 
   robot.respond /iron price (.+)/i, (msg) ->
     memeGenerator msg, 'q06KuA', msg.match[1], 'Pay the iron price'
@@ -49,7 +49,7 @@ module.exports = (robot) ->
   robot.respond /brace yourself (.+)/i, (msg) ->
     memeGenerator msg, '_I74XA', 'Brace Yourself', msg.match[1]
 
-  robot.respond /(.*) (ALL the .*)/i, (msg) ->
+  robot.respond /(.+) (ALL the .+)/i, (msg) ->
     memeGenerator msg, 'Dv99KQ', msg.match[1], msg.match[2]
 
   robot.respond /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, (msg) ->
@@ -88,7 +88,7 @@ module.exports = (robot) ->
   robot.respond /(IF .*), ((ARE|CAN|DO|DOES|HOW|IS|MAY|MIGHT|SHOULD|THEN|WHAT|WHEN|WHERE|WHICH|WHO|WHY|WILL|WON\'T|WOULD)[ \'N].*)/i, (msg) ->
     memeGenerator msg, '-kFVmQ', msg.match[1], msg.match[2] + (if msg.match[2].search(/\?$/)==(-1) then '?' else '')
 
-  robot.respond /(.*)(AND IT\'S GONE.*)/i, (msg) ->
+  robot.respond /(.*)(A+ND IT\'S GONE.*)/i, (msg) ->
     memeGenerator msg, 'uIZe3Q', msg.match[1], msg.match[2]
 
   robot.respond /WHAT IF I TOLD YOU (.*)/i, (msg) ->
@@ -103,10 +103,10 @@ module.exports = (robot) ->
   robot.respond /(IF .*)(THAT'D BE GREAT)/i, (msg) ->
     memeGenerator msg, 'q1cQXg', msg.match[1], msg.match[2]
 
-  robot.respond /(MUCH .*) ((SO|VERY) .*)/i, (msg) ->
+  robot.respond /((?:WOW )?(?:SUCH|MUCH) .*) ((SUCH|MUCH|SO|VERY|MANY) .*)/i, (msg) ->
     memeGenerator msg, 'AfO6hw', msg.match[1], msg.match[2]
 
-  robot.respond /(.*)(EVERYWHERE.*)/i, (msg) ->
+  robot.respond /(.+, .+)(EVERYWHERE.*)/i, (msg) ->
     memeGenerator msg, 'yDcY5w', msg.match[1], msg.match[2]
 
 ####
