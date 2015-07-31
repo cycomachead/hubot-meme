@@ -31,6 +31,8 @@
 #   hubot MUCH <text> (SO|VERY) <text> - Meme: Generates Doge
 #   hubot <text>, <text> EVERYWHERE - Meme: Generates Buzz Lightyear
 #   hubot khanify <text> - Meme: Has Shatner yell your phrase
+#   hubot pun | bad joke eel <text>? <text> - Meme: Bad joke eel
+#   hubot pun | bad joke eel <text> / <text> - Meme: Bad joke eel
 # Author:
 #   bobanj
 #   cycomachead, Michael Ball <cycomachead@gmail.com>
@@ -129,6 +131,12 @@ module.exports = (robot) ->
     khan += if extended then '!' else '!!!!!'
 
     memeGenerator msg, 'DoLEMA', '', khan
+
+  robot.respond /(?:bad joke eel|pun)(.+\?) (.+)/i, (msg) ->
+    memeGenerator msg, 'R35VNw', msg.match[1], msg.match[2]
+
+  robot.respond /(?:bad joke eel|pun)(.+) \/ (.+)/i, (msg) ->
+    memeGenerator msg, 'R35VNw', msg.match[1], msg.match[2]
 
 ####
 createPostData = (imageID, lowerText, upperText) ->
