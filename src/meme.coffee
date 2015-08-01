@@ -43,79 +43,79 @@
 memeGenerator = require "./lib/memecaptain.coffee"
 
 module.exports = (robot) ->
-  robot.respond /Y U NO (.+)/i, (msg) ->
+  robot.respond /Y U NO (.+)/i, id: 'meme.y-u-no', (msg) ->
     memeGenerator msg, 'NryNmg', 'Y U NO', msg.match[1]
 
-  robot.respond /aliens guy (.+)/i, (msg) ->
+  robot.respond /aliens guy (.+)/i, id: 'meme.aliens', (msg) ->
     memeGenerator msg, 'sO-Hng', '', msg.match[1]
 
-  robot.respond /iron price (.+)/i, (msg) ->
+  robot.respond /iron price (.+)/i, id: 'meme.iron-price', (msg) ->
     memeGenerator msg, 'q06KuA', msg.match[1], 'Pay the iron price'
 
-  robot.respond /brace yourself (.+)/i, (msg) ->
+  robot.respond /brace yourself (.+)/i, id: 'meme.brace-yourself', (msg) ->
     memeGenerator msg, '_I74XA', 'Brace Yourself', msg.match[1]
 
-  robot.respond /(.+) (ALL the .+)/i, (msg) ->
+  robot.respond /(.+) (ALL the .+)/i, id: 'meme.all-the-things', (msg) ->
     memeGenerator msg, 'Dv99KQ', msg.match[1], msg.match[2]
 
-  robot.respond /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, (msg) ->
+  robot.respond /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, id: 'meme.interesting-man', (msg) ->
     memeGenerator msg, 'V8QnRQ', msg.match[1], msg.match[2]
 
-  robot.respond /(.*)(SUCCESS|NAILED IT.*)/i, (msg) ->
+  robot.respond /(.*)(SUCCESS|NAILED IT.*)/i, id: 'meme.success-kid', (msg) ->
     memeGenerator msg, 'AbNPRQ', msg.match[1], msg.match[2]
 
-  robot.respond /(.*) (\w+\sTOO DAMN .*)/i, (msg) ->
+  robot.respond /(.*) (\w+\sTOO DAMN .*)/i, id: 'meme.too-damn-high', (msg) ->
     memeGenerator msg, 'RCkv6Q', msg.match[1], msg.match[2]
 
-  robot.respond /(NOT SURE IF .*) (OR .*)/i, (msg) ->
+  robot.respond /(NOT SURE IF .*) (OR .*)/i, id: 'meme.not-sure-fry', (msg) ->
     memeGenerator msg, 'CsNF8w', msg.match[1], msg.match[2]
 
-  robot.respond /(YO DAWG .*) (SO .*)/i, (msg) ->
+  robot.respond /(YO DAWG .*) (SO .*)/i, id: 'meme.yo-dawg', (msg) ->
     memeGenerator msg, 'Yqk_kg', msg.match[1], msg.match[2]
 
-  robot.respond /(All your .*) (are belong to .*)/i, (msg) ->
+  robot.respond /(All your .*) (are belong to .*)/i, id: 'meme.base-are-belong', (msg) ->
     memeGenerator msg, '76CAvA', msg.match[1], msg.match[2]
 
-  robot.respond /(.*)\s*BITCH PLEASE\s*(.*)/i, (msg) ->
+  robot.respond /(.*)\s*BITCH PLEASE\s*(.*)/i, id: 'meme.bitch-please', (msg) ->
     memeGenerator msg, 'jo9J0Q', msg.match[1], msg.match[2]
 
-  robot.respond /(.*)\s*COURAGE\s*(.*)/i, (msg) ->
+  robot.respond /(.*)\s*COURAGE\s*(.*)/i, id: 'meme.courage', (msg) ->
     memeGenerator msg, 'IMQ72w', msg.match[1], msg.match[2]
 
-  robot.respond /ONE DOES NOT SIMPLY (.*)/i, (msg) ->
+  robot.respond /ONE DOES NOT SIMPLY (.*)/i, id: 'meme.not-simply', (msg) ->
     memeGenerator msg, 'da2i4A', 'ONE DOES NOT SIMPLY', msg.match[1]
 
-  robot.respond /(IF YOU .*\s)(.* GONNA HAVE A BAD TIME)/i, (msg) ->
+  robot.respond /(IF YOU .*\s)(.* GONNA HAVE A BAD TIME)/i, id: 'meme.bad-time', (msg) ->
     memeGenerator msg, 'lfSVJw', msg.match[1], msg.match[2]
 
-  robot.respond /(.*)TROLLFACE(.*)/i, (msg) ->
+  robot.respond /(.*)TROLLFACE(.*)/i, id: 'meme.trollface', (msg) ->
     memeGenerator msg, 'mEK-TA', msg.match[1], msg.match[2]
 
-  robot.respond /(IF .*), ((ARE|CAN|DO|DOES|HOW|IS|MAY|MIGHT|SHOULD|THEN|WHAT|WHEN|WHERE|WHICH|WHO|WHY|WILL|WON\'T|WOULD)[ \'N].*)/i, (msg) ->
+  robot.respond /(IF .*), ((ARE|CAN|DO|DOES|HOW|IS|MAY|MIGHT|SHOULD|THEN|WHAT|WHEN|WHERE|WHICH|WHO|WHY|WILL|WON\'T|WOULD)[ \'N].*)/i, id: 'meme.philosoraptor', (msg) ->
     memeGenerator msg, '-kFVmQ', msg.match[1], msg.match[2] + (if msg.match[2].search(/\?$/)==(-1) then '?' else '')
 
-  robot.respond /(.*)(A+ND IT\'S GONE.*)/i, (msg) ->
+  robot.respond /(.*)(A+ND IT\'S GONE.*)/i, id: 'meme.its-gone', (msg) ->
     memeGenerator msg, 'uIZe3Q', msg.match[1], msg.match[2]
 
-  robot.respond /WHAT IF I TOLD YOU (.*)/i, (msg) ->
+  robot.respond /WHAT IF I TOLD YOU (.*)/i, id: 'meme.told-you', (msg) ->
     memeGenerator msg, 'fWle1w', 'WHAT IF I TOLD YOU', msg.match[1]
 
-  robot.respond /(WHY THE (FUCK|FRIEND)) (.*)/i, (msg) ->
+  robot.respond /(WHY THE (FUCK|FRIEND)) (.*)/i, id: 'meme.why-the-friend', (msg) ->
     memeGenerator msg, 'z8IPtw', msg.match[1], msg.match[3]
 
-  robot.respond /WTF (.*)/i, (msg) ->
+  robot.respond /WTF (.*)/i, id: 'meme.wtf', (msg) ->
     memeGenerator msg, 'z8IPtw', 'WTF', msg.match[1]
 
-  robot.respond /(IF .*)(THAT'D BE GREAT)/i, (msg) ->
+  robot.respond /(IF .*)(THAT'D BE GREAT)/i, id: 'meme.be-great', (msg) ->
     memeGenerator msg, 'q1cQXg', msg.match[1], msg.match[2]
 
-  robot.respond /((?:WOW )?(?:SUCH|MUCH) .*) ((SUCH|MUCH|SO|VERY|MANY) .*)/i, (msg) ->
+  robot.respond /((?:WOW )?(?:SUCH|MUCH) .*) ((SUCH|MUCH|SO|VERY|MANY) .*)/i, id: 'meme.doge', (msg) ->
     memeGenerator msg, 'AfO6hw', msg.match[1], msg.match[2]
 
-  robot.respond /(.+, .+)(EVERYWHERE.*)/i, (msg) ->
+  robot.respond /(.+, .+)(EVERYWHERE.*)/i, id: 'meme.everywhere', (msg) ->
     memeGenerator msg, 'yDcY5w', msg.match[1], msg.match[2]
 
-  robot.respond /KHANIFY (.+)$/i, (msg) ->
+  robot.respond /KHANIFY (.+)$/i, id: 'meme.khan', (msg) ->
     # Characters we can duplicate to make it KHAAAAAANy
     extendyChars = ['a', 'e', 'o', 'u']
     khan = ''
@@ -135,9 +135,6 @@ module.exports = (robot) ->
 
     memeGenerator msg, 'DoLEMA', '', khan
 
-  robot.respond /(?:bad joke eel|pun)(.+\?) (.+)/i, (msg) ->
-    memeGenerator msg, 'R35VNw', msg.match[1], msg.match[2]
-
-  robot.respond /(?:bad joke eel|pun)(.+) \/ (.+)/i, (msg) ->
+  robot.respond /(?:bad joke eel|pun)(.+\?) (.+)/i, id: 'meme.bad-joke-eel', (msg) ->
     memeGenerator msg, 'R35VNw', msg.match[1], msg.match[2]
 
