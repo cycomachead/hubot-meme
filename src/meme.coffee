@@ -38,6 +38,9 @@
 #   cycomachead, Michael Ball <cycomachead@gmail.com>
 #   peelman, Nick Peelman <nick@peelman.us>
 #   ericjsilva, Eric Silva
+#   lukewaite, Luke Waite
+
+memeGenerator = require "./lib/memecaptain.coffee"
 
 module.exports = (robot) ->
   robot.respond /Y U NO (.+)/i, (msg) ->
@@ -138,58 +141,3 @@ module.exports = (robot) ->
   robot.respond /(?:bad joke eel|pun)(.+) \/ (.+)/i, (msg) ->
     memeGenerator msg, 'R35VNw', msg.match[1], msg.match[2]
 
-####
-createPostData = (imageID, lowerText, upperText) ->
-  data = {
-    src_image_id: imageID,
-    private: true,
-    captions_attributes: [
-      {
-        text: lowerText.trim(),
-        top_left_x_pct: 0.05,
-        top_left_y_pct: 0.75,
-        width_pct: 0.9,
-        height_pct: 0.25
-      },
-      {
-        text: upperText.trim(),
-        top_left_x_pct: 0.05,
-        top_left_y_pct: 0,
-        width_pct: 0.9,
-        height_pct: 0.25
-      }
-    ]
-  }
-  return JSON.stringify(data)
-
-
-memeGenerator = (msg, imageID, upperText, lowerText) ->
-  MEME_CAPTAIN = 'http://memecaptain.com/gend_images'
-  baseError = 'Sorry, I couldn\'t generate that meme.'
-  reasonError = 'Unexpected status from memecaptian.com:'
-
-  processResult = (err, res, body) ->
-    return msg.reply "#{baseError} #{err}" if err
-    if res.statusCode == 301
-      msg.http(res.headers.location).get() processResult
-      return
-    if res.statusCode == 202 # memecaptain API success
-      timer = setInterval(->
-        msg.http(res.headers.location).get() (err, res, body) ->
-          return msg.reply "#{baseError} #{err}" if err
-          return if res.statusCode == 200 # wait for the image
-          if res.statusCode == 303
-            msg.send res.headers.location
-            clearInterval(timer)
-          else
-            msg.reply "#{baseError} #{reasonError} #{res.statusCode} while waiting for the image"
-      , 2000)
-    if res.statusCode > 300 # memecaptian error
-      msg.reply "#{baseError} #{reasonError} #{res.statusCode} when requesting the image"
-
-
-  data = createPostData(imageID, lowerText, upperText)
-  msg.robot.http(MEME_CAPTAIN)
-      .header('accept', 'application/json')
-      .header('Content-type', 'application/json')
-      .post(data) processResult
