@@ -13,7 +13,8 @@ describe 'hubot-meme', ->
     require('../src/hubot-meme')(@robot)
 
   it 'registers a respond listener', ->
-    expect(@robot.respond).to.have.been.calledWith(/hello/)
+    expect(@robot.respond).to.have.been.calledWith(/Test All the Tings/)
 
-  it 'registers a hear listener', ->
-    expect(@robot.hear).to.have.been.calledWith(/orly/)
+  it 'registers a respond listener', ->
+    expect(@robot.respond).to.have.been.calledWith(/KHANIFY Do Tests/)
+
