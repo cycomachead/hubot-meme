@@ -1,7 +1,7 @@
 {
   "name": "hubot-meme",
   "description": "Zero-configuration memes for your hubot via memecaptain.com",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Michael Ball <cycomachead@gmail.com>",
   "license": "MIT",
 

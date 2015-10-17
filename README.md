@@ -20,6 +20,13 @@ Then add **hubot-meme** to your `external-scripts.json`:
   "hubot-meme"
 ]
 ```
+## Optional Option
+By default, meme commands use `respond`. If you would like to use `hear` then
+set:
+
+```
+HUBOT_MEME_HEAR=1
+```
 
 ## Sample Interaction
 
