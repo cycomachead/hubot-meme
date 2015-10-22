@@ -5,7 +5,7 @@ Zero-configuration memes for your hubot via memecaptain.com
 See [`src/meme.coffee`](src/meme.coffee) for full documentation.
 
 Why `hubot-meme`?
-Unlike many other meme scripts, memecaptain.com requires no API keys and has a painless setup. :smile:
+Unlike many other meme scripts, memecaptain.com requires no API key and has a painless setup. :smile:
 
 ## Installation
 
@@ -20,13 +20,15 @@ Then add **hubot-meme** to your `external-scripts.json`:
   "hubot-meme"
 ]
 ```
-## Optional Option
-By default, meme commands use `respond`. If you would like to use `hear` then
-set:
+## Extra  Extra Memes!
+Can't get enough?
+
+In your environment variables set:
 
 ```
-HUBOT_MEME_HEAR=1
+HUBOT_EXTRA_MEMES=True
 ```
+This switches the `robot.respond` function to `robot.hear` so that your Hubot will match all text in the chatroom.
 
 ## Sample Interaction
 
@@ -41,3 +43,6 @@ hubot>> http://i.memecaptain.com/gend_images/PESlaQ.jpg
 See [meme.coffee](src/meme.coffee#L9)
 
 Feel free to submit a pull-request if you want a meme added!
+
+## Extending Memes
+By default, I'm keeping this set of memes and commands fairly clean and appropriate for a workplace. You can extend the memes in your own bot's code by `require`ing the `memecaptain.coffee` file, which handles all the API interactions.
