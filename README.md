@@ -46,3 +46,15 @@ Feel free to submit a pull-request if you want a meme added!
 
 ## Extending Memes
 By default, I'm keeping this set of memes and commands fairly clean and appropriate for a workplace. You can extend the memes in your own bot's code by `require`ing the `memecaptain.coffee` file, which handles all the API interactions.
+
+Sample:
+
+```
+memeGenerator = require "hubot-meme/src/lib/memecaptain.coffee"
+
+module.exports = (robot) ->
+  robot.respond /(.+) (ALL the .+)/i, id: 'meme.all-the-things', (msg) ->
+    memeGenerator msg, 'Dv99KQ', msg.match[1], msg.match[2]
+```
+
+New meme images can be added at http://memecaptain.com by pasting the URL into the `Load URL` then hitting enter. The `src` param of the URL is your image ID.
